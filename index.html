@@ -1,0 +1,298 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8" />
+<title>伍绍恒 | Java 后端开发工程师</title>
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<style>
+:root {
+  --bg: #0b0f1a;
+  --card: rgba(255,255,255,0.06);
+  --text: #e6e9f0;
+  --muted: #9aa4bf;
+  --accent: #5eead4;
+  --accent2: #60a5fa;
+  --border: rgba(255,255,255,0.12);
+}
+
+* { box-sizing: border-box; margin: 0; padding: 0; }
+body {
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+  background: radial-gradient(ellipse at top, #111827 0%, var(--bg) 60%);
+  color: var(--text);
+  overflow-x: hidden;
+}
+
+/* 光标聚光灯 */
+.spotlight {
+  position: fixed;
+  inset: 0;
+  pointer-events: none;
+  background: radial-gradient(
+    circle 180px at var(--x) var(--y),
+    rgba(94,234,212,0.15),
+    transparent 60%
+  );
+  z-index: 0;
+}
+
+.container {
+  max-width: 1200px;
+  margin: auto;
+  padding: 80px 24px;
+  position: relative;
+  z-index: 1;
+}
+
+/* Hero */
+.hero {
+  min-height: 90vh;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+
+.hero h1 {
+  font-size: 56px;
+  line-height: 1.1;
+  margin-bottom: 20px;
+}
+
+.hero .typing {
+  font-size: 24px;
+  color: var(--accent);
+  height: 32px;
+}
+
+.hero p {
+  max-width: 720px;
+  margin-top: 28px;
+  color: var(--muted);
+  font-size: 18px;
+}
+
+/* 卡片 */
+.section {
+  margin-top: 120px;
+}
+
+.section h2 {
+  font-size: 36px;
+  margin-bottom: 40px;
+}
+
+.grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit,minmax(260px,1fr));
+  gap: 24px;
+}
+
+.card {
+  background: linear-gradient(180deg, var(--card), rgba(255,255,255,0.02));
+  border: 1px solid var(--border);
+  border-radius: 18px;
+  padding: 28px;
+  transition: all .35s ease;
+  position: relative;
+  overflow: hidden;
+}
+
+.card::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(120deg, transparent, rgba(94,234,212,0.15), transparent);
+  opacity: 0;
+  transition: opacity .35s;
+}
+
+.card:hover {
+  transform: translateY(-10px);
+  border-color: var(--accent);
+}
+
+.card:hover::before {
+  opacity: 1;
+}
+
+.card h3 {
+  font-size: 22px;
+  margin-bottom: 12px;
+}
+
+.card p {
+  color: var(--muted);
+  line-height: 1.6;
+}
+
+/* 时间轴 */
+.timeline {
+  border-left: 2px solid var(--border);
+  padding-left: 32px;
+}
+
+.item {
+  margin-bottom: 48px;
+  position: relative;
+}
+
+.item::before {
+  content: "";
+  width: 14px;
+  height: 14px;
+  background: var(--accent);
+  border-radius: 50%;
+  position: absolute;
+  left: -39px;
+  top: 6px;
+}
+
+.item h4 {
+  font-size: 20px;
+}
+
+.item span {
+  font-size: 14px;
+  color: var(--muted);
+}
+
+.item ul {
+  margin-top: 12px;
+  padding-left: 18px;
+}
+
+.item li {
+  margin-bottom: 8px;
+  color: var(--muted);
+}
+
+/* footer */
+footer {
+  text-align: center;
+  padding: 60px 0;
+  color: var(--muted);
+}
+</style>
+</head>
+
+<body>
+<div class="spotlight"></div>
+
+<div class="container hero">
+  <h1>伍绍恒</h1>
+  <div class="typing" id="typing"></div>
+  <p>
+    Java 后端开发工程师，具备真实企业级项目与高并发系统实战经验。
+    熟悉微服务架构、缓存与消息中间件、容器化部署，
+    能从工程与架构视角解决性能与稳定性问题。
+  </p>
+</div>
+
+<div class="container section">
+  <h2>核心技术优势</h2>
+  <div class="grid">
+    <div class="card">
+      <h3>高并发与性能优化</h3>
+      <p>
+        深入理解 Redis、MySQL 事务与索引原理，具备缓存雪崩、击穿、穿透治理经验，
+        多个项目中通过异步化与缓存设计实现 40%~90% 性能提升。
+      </p>
+    </div>
+    <div class="card">
+      <h3>微服务与中间件</h3>
+      <p>
+        熟练使用 Spring Cloud 体系，实际落地 RabbitMQ、Nacos、Gateway、Feign，
+        能清晰设计服务边界与异步解耦方案。
+      </p>
+    </div>
+    <div class="card">
+      <h3>工程化与架构能力</h3>
+      <p>
+        掌握设计模式（策略、模板方法等），
+        在判题系统中通过抽象接口 + 工厂模式实现多沙箱灵活扩展。
+      </p>
+    </div>
+    <div class="card">
+      <h3>DevOps & Linux</h3>
+      <p>
+        熟悉 Docker 镜像构建、容器运行与隔离，
+        具备 Linux 服务器部署、Shell 自动化脚本编写经验。
+      </p>
+    </div>
+  </div>
+</div>
+
+<div class="container section">
+  <h2>代表项目经历</h2>
+  <div class="timeline">
+
+    <div class="item">
+      <h4>智能代码练习与评测平台</h4>
+      <span>Spring Cloud · Docker · MQ · Redis</span>
+      <ul>
+        <li>自主设计判题机与代码沙箱架构，支持多语言、多实现策略切换</li>
+        <li>使用 Docker Java API 隔离执行用户代码，保障宿主机安全</li>
+        <li>MQ 异步判题，响应时间从 4s 降至 2.6s，QPS 提升 65%</li>
+      </ul>
+    </div>
+
+    <div class="item">
+      <h4>企业级智能审计 BI 系统（实习）</h4>
+      <span>Spring Boot · AIGC · RabbitMQ · Redisson</span>
+      <ul>
+        <li>设计 IO 密集型线程池 + 任务队列，实现 AI 任务并发执行</li>
+        <li>MQ 解耦 AI 生成模块，提升系统可靠性与扩展性</li>
+        <li>通过 Prompt Engineering 输出结构化分析结论与图表数据</li>
+      </ul>
+    </div>
+
+    <div class="item">
+      <h4>校园点评与社交平台</h4>
+      <span>Spring Boot · Redis · MySQL</span>
+      <ul>
+        <li>Redis + Lua 实现优惠券秒杀，一人一单，性能提升约 40%</li>
+        <li>ZSet 实现点赞排行榜，性能相比数据库查询提升 80%</li>
+        <li>高频数据缓存，整体查询性能提升约 90%</li>
+      </ul>
+    </div>
+
+  </div>
+</div>
+
+<footer>
+  © 伍绍恒 · Java 后端开发工程师
+</footer>
+
+<script>
+/* 打字机效果 */
+const texts = [
+  "Java 后端开发工程师",
+  "微服务 / 高并发 / 中间件",
+  "具备企业级项目与架构思维"
+];
+let i = 0, j = 0, del = false;
+const el = document.getElementById("typing");
+
+setInterval(() => {
+  el.textContent = texts[i].slice(0, j);
+  if (!del) {
+    j++;
+    if (j > texts[i].length + 10) del = true;
+  } else {
+    j--;
+    if (j === 0) {
+      del = false;
+      i = (i + 1) % texts.length;
+    }
+  }
+}, 90);
+
+/* 光标聚光灯 */
+document.addEventListener("mousemove", e => {
+  document.documentElement.style.setProperty("--x", e.clientX + "px");
+  document.documentElement.style.setProperty("--y", e.clientY + "px");
+});
+</script>
+</body>
+</html>
