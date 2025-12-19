@@ -30,33 +30,293 @@ body {
   inset: 0;
   pointer-events: none;
   background: radial-gradient(
-    circle 180px at var(--x) var(--y),
-    rgba(94,234,212,0.15),
-    transparent 60%
+    circle 200px at var(--x) var(--y),
+    rgba(94, 234, 212, 0.15) 0%,
+    rgba(138, 43, 226, 0.1) 40%,
+    transparent 70%
   );
+  transition: background-position 0.1s ease-out;
   z-index: 0;
+}
+
+/* GitHub链接样式 */
+.github-link {
+  position: fixed;
+  top: 24px;
+  right: 24px;
+  z-index: 100;
+  opacity: 0.7;
+  transition: all 0.3s ease;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 8px;
+  border-radius: 8px;
+  background: rgba(0,0,0,0.3);
+  backdrop-filter: blur(10px);
+}
+
+.github-link:hover {
+  opacity: 1;
+  transform: translateY(-3px);
+  background: rgba(0,0,0,0.5);
+  box-shadow: 0 4px 12px rgba(94,234,212,0.2);
+}
+
+.github-link svg {
+  transition: all 0.3s ease;
+}
+
+.github-link:hover svg {
+  stroke: var(--accent);
+  transform: rotate(5deg);
 }
 
 .container {
   max-width: 1200px;
   margin: auto;
-  padding: 80px 24px;
+  padding: 40px 24px;
   position: relative;
   z-index: 1;
 }
 
+.container.hero {
+  padding-top: 20px;
+  padding-bottom: 20px;
+}
+
+/* 浮动技术图标 */
+.tech-icon {
+  position: absolute;
+  opacity: 0.3;
+  animation: float 6s ease-in-out infinite;
+  z-index: 0;
+  pointer-events: none;
+}
+
+.tech-icon svg {
+  width: 48px;
+  height: 48px;
+  fill: none;
+  stroke: currentColor;
+  stroke-width: 1.5;
+  stroke-linecap: round;
+  stroke-linejoin: round;
+}
+
+.tech-icon:nth-child(1) {
+  color: var(--accent);
+  top: 20%;
+  left: 10%;
+  animation-delay: 0s;
+}
+
+.tech-icon:nth-child(2) {
+  color: var(--accent2);
+  top: 30%;
+  right: 15%;
+  animation-delay: 2s;
+}
+
+.tech-icon:nth-child(3) {
+  color: var(--accent);
+  bottom: 40%;
+  left: 15%;
+  animation-delay: 4s;
+}
+
+.tech-icon:nth-child(4) {
+  color: var(--accent2);
+  bottom: 30%;
+  right: 10%;
+  animation-delay: 1s;
+}
+
+.tech-icon:nth-child(5) {
+  color: var(--accent);
+  top: 50%;
+  left: 20%;
+  animation-delay: 3s;
+}
+
+@keyframes float {
+  0%, 100% {
+    transform: translateY(0px) rotate(0deg);
+  }
+  50% {
+    transform: translateY(-20px) rotate(5deg);
+  }
+}
+
+/* 矩阵网格背景 */
+.hero::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-image: 
+    linear-gradient(rgba(94,234,212,0.05) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(94,234,212,0.05) 1px, transparent 1px);
+  background-size: 50px 50px;
+  background-position: center;
+  opacity: 0.5;
+  z-index: 0;
+  animation: gridMove 20s linear infinite;
+}
+
+@keyframes gridMove {
+  0% {
+    background-position: 0 0;
+  }
+  100% {
+    background-position: 50px 50px;
+  }
+}
+
+/* 动态粒子 */
+.particles {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  z-index: 0;
+  pointer-events: none;
+}
+
+.particle {
+  position: absolute;
+  border-radius: 50%;
+  background: radial-gradient(circle, var(--accent) 0%, transparent 70%);
+  opacity: 0.4;
+  animation: particleFloat 8s ease-in-out infinite;
+}
+
+.particle:nth-child(1) {
+  width: 6px;
+  height: 6px;
+  top: 10%;
+  left: 20%;
+  animation-delay: 0s;
+}
+
+.particle:nth-child(2) {
+  width: 4px;
+  height: 4px;
+  top: 60%;
+  right: 15%;
+  animation-delay: 1s;
+}
+
+.particle:nth-child(3) {
+  width: 8px;
+  height: 8px;
+  bottom: 30%;
+  left: 10%;
+  animation-delay: 2s;
+}
+
+.particle:nth-child(4) {
+  width: 5px;
+  height: 5px;
+  top: 40%;
+  right: 25%;
+  animation-delay: 3s;
+}
+
+.particle:nth-child(5) {
+  width: 7px;
+  height: 7px;
+  bottom: 50%;
+  right: 10%;
+  animation-delay: 4s;
+}
+
+.particle:nth-child(6) {
+  width: 5px;
+  height: 5px;
+  top: 20%;
+  right: 30%;
+  animation-delay: 5s;
+}
+
+.particle:nth-child(7) {
+  width: 6px;
+  height: 6px;
+  bottom: 20%;
+  left: 25%;
+  animation-delay: 6s;
+}
+
+.particle:nth-child(8) {
+  width: 4px;
+  height: 4px;
+  top: 70%;
+  left: 15%;
+  animation-delay: 7s;
+}
+
+.particle:nth-child(9) {
+  width: 7px;
+  height: 7px;
+  bottom: 40%;
+  right: 20%;
+  animation-delay: 8s;
+}
+
+.particle:nth-child(10) {
+  width: 5px;
+  height: 5px;
+  top: 30%;
+  left: 30%;
+  animation-delay: 9s;
+}
+
+@keyframes particleFloat {
+  0%, 100% {
+    transform: translate(0, 0) scale(1);
+    opacity: 0.4;
+  }
+  25% {
+    transform: translate(20px, -20px) scale(1.1);
+    opacity: 0.6;
+  }
+  50% {
+    transform: translate(40px, 0) scale(0.9);
+    opacity: 0.3;
+  }
+  75% {
+    transform: translate(20px, 20px) scale(1.2);
+    opacity: 0.5;
+  }
+}
+
 /* Hero */
 .hero {
-  min-height: 90vh;
+  min-height: 70vh;
   display: flex;
   flex-direction: column;
   justify-content: center;
+  position: relative;
+  overflow: hidden;
+}
+
+.hero h1, .hero .typing, .hero p {
+  position: relative;
+  z-index: 1;
 }
 
 .hero h1 {
   font-size: 56px;
   line-height: 1.1;
   margin-bottom: 20px;
+  text-shadow: 0 0 20px rgba(94,234,212,0.3);
+  background: linear-gradient(90deg, var(--text), var(--accent));
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
 }
 
 .hero .typing {
@@ -74,7 +334,7 @@ body {
 
 /* 卡片 */
 .section {
-  margin-top: 120px;
+  margin-top: 60px;
 }
 
 .section h2 {
@@ -133,7 +393,7 @@ body {
 }
 
 .item {
-  margin-bottom: 48px;
+  margin-bottom: 40px;
   position: relative;
 }
 
@@ -170,8 +430,55 @@ body {
 /* footer */
 footer {
   text-align: center;
-  padding: 60px 0;
+  padding: 60px 24px;
   color: var(--muted);
+  background: rgba(0,0,0,0.2);
+  border-top: 1px solid var(--border);
+  margin-top: 80px;
+}
+
+.footer-content {
+  max-width: 1200px;
+  margin: 0 auto;
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  align-items: center;
+}
+
+.footer-links {
+  display: flex;
+  gap: 16px;
+  align-items: center;
+  flex-wrap: wrap;
+  justify-content: center;
+}
+
+.footer-links a {
+  color: var(--muted);
+  text-decoration: none;
+  transition: all 0.3s ease;
+  font-size: 14px;
+}
+
+.footer-links a:hover {
+  color: var(--accent);
+  text-decoration: underline;
+}
+
+.separator {
+  color: var(--border);
+  font-size: 12px;
+}
+
+.copyright {
+  font-size: 14px;
+  font-weight: 500;
+}
+
+.tech-stack {
+  font-size: 12px;
+  opacity: 0.7;
 }
 </style>
 </head>
@@ -179,7 +486,68 @@ footer {
 <body>
 <div class="spotlight"></div>
 
+<!-- GitHub链接 -->
+<a href="https://github.com/1797483570" class="github-link" target="_blank" rel="noopener noreferrer">
+  <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="var(--text)" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+    <path d="M9 19c-5 1.5-5-2.5-7-3m14 6v-3.87a3.37 3.37 0 0 0-.94-2.61c3.14-.35 6.44-1.54 6.44-7A5.44 5.44 0 0 0 20 4.77 5.07 5.07 0 0 0 19.91 1S18.73.65 16 2.48a13.38 13.38 0 0 0-7 0C6.27.65 5.09 1 5.09 1A5.07 5.07 0 0 0 5 4.77a5.44 5.44 0 0 0-1.5 3.78c0 5.42 3.3 6.61 6.44 7A3.37 3.37 0 0 0 9 18.13V22"></path>
+  </svg>
+</a>
+
 <div class="container hero">
+  <!-- 浮动技术图标 -->
+  <div class="tech-icon">
+    <svg viewBox="0 0 24 24">
+      <!-- 服务器图标 -->
+      <rect x="2" y="2" width="20" height="8" rx="2" ry="2"></rect>
+      <rect x="2" y="14" width="20" height="8" rx="2" ry="2"></rect>
+      <line x1="6" y1="6" x2="6.01" y2="6"></line>
+      <line x1="6" y1="18" x2="6.01" y2="18"></line>
+    </svg>
+  </div>
+  <div class="tech-icon">
+    <svg viewBox="0 0 24 24">
+      <!-- 数据库图标 -->
+      <ellipse cx="12" cy="5" rx="9" ry="3"></ellipse>
+      <path d="M21 12c0 1.66-4 3-9 3s-9-1.34-9-3"></path>
+      <path d="M3 5v14c0 1.66 4 3 9 3s9-1.34 9-3V5"></path>
+    </svg>
+  </div>
+  <div class="tech-icon">
+    <svg viewBox="0 0 24 24">
+      <!-- 代码括号图标 -->
+      <path d="M18 3a3 3 0 0 0-3 3v12a3 3 0 0 0 3 3 3 3 0 0 0 3-3 3 3 0 0 0-3-3H6a3 3 0 0 0-3 3 3 3 0 0 0 3 3 3 3 0 0 0 3-3V6a3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3h12a3 3 0 0 0 3-3 3 3 0 0 0-3-3z"></path>
+    </svg>
+  </div>
+  <div class="tech-icon">
+    <svg viewBox="0 0 24 24">
+      <!-- Redis 图标（简化版） -->
+      <circle cx="12" cy="12" r="10"></circle>
+      <path d="M12 2a10 10 0 0 0-10 10 10 10 0 0 0 5 8.66"></path>
+      <path d="M12 2a10 10 0 0 1 10 10 10 10 0 0 1-5 8.66"></path>
+    </svg>
+  </div>
+  <div class="tech-icon">
+    <svg viewBox="0 0 24 24">
+      <!-- 云服务图标 -->
+      <path d="M17.5 19H9a7 7 0 1 1 6.71-9h1.79a4.5 4.5 0 1 1 0 9Z"></path>
+    </svg>
+  </div>
+  
+  <!-- 动态粒子 -->
+  <div class="particles">
+    <div class="particle"></div>
+    <div class="particle"></div>
+    <div class="particle"></div>
+    <div class="particle"></div>
+    <div class="particle"></div>
+    <div class="particle"></div>
+    <div class="particle"></div>
+    <div class="particle"></div>
+    <div class="particle"></div>
+    <div class="particle"></div>
+  </div>
+  
+  <!-- 主要内容 -->
   <h1>伍绍恒</h1>
   <div class="typing" id="typing"></div>
   <p>
@@ -260,8 +628,42 @@ footer {
   </div>
 </div>
 
+<div class="container section">
+  <h2>联系信息</h2>
+  <div class="grid">
+    <div class="card">
+      <h3>邮箱地址</h3>
+      <p style="display: flex; align-items: center; gap: 12px; margin-top: 16px; font-size: 18px;">
+        <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="var(--accent)" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+          <path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"></path>
+          <polyline points="22,6 12,13 2,6"></polyline>
+        </svg>
+        wsh1797@163.com
+      </p>
+    </div>
+    <div class="card">
+      <h3>电话号码</h3>
+      <p style="display: flex; align-items: center; gap: 12px; margin-top: 16px; font-size: 18px;">
+        <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="var(--accent2)" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+          <path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z"></path>
+        </svg>
+        13030174427
+      </p>
+    </div>
+  </div>
+</div>
+
 <footer>
-  © 伍绍恒 · Java 后端开发工程师
+  <div class="footer-content">
+    <p class="copyright">© 2025 伍绍恒. All rights reserved.</p>
+    <div class="footer-links">
+      <a href="https://github.com/1797483570" target="_blank" rel="noopener noreferrer">GitHub</a>
+      <span class="separator">|</span>
+      <a href="mailto:wsh1797@163.com">Email</a>
+      <span class="separator">|</span>
+      <a href="tel:13030174427">Phone</a>
+    </div>
+  </div>
 </footer>
 
 <script>
@@ -289,10 +691,60 @@ setInterval(() => {
 }, 90);
 
 /* 光标聚光灯 */
-document.addEventListener("mousemove", e => {
-  document.documentElement.style.setProperty("--x", e.clientX + "px");
-  document.documentElement.style.setProperty("--y", e.clientY + "px");
-});
+(function() {
+  // 存储当前聚光灯位置
+  let currentX = 0;
+  let currentY = 0;
+  
+  // 存储目标位置（鼠标位置）
+  let targetX = 0;
+  let targetY = 0;
+  
+  // 缓动系数，值越小越平滑
+  const ease = 0.15;
+  
+  // 事件节流，避免频繁触发
+  let isThrottled = false;
+  const throttleDelay = 16; // 约60fps
+  
+  // 更新CSS变量
+  function updateSpotlight() {
+    // 计算当前位置到目标位置的差值
+    const dx = targetX - currentX;
+    const dy = targetY - currentY;
+    
+    // 使用缓动函数更新当前位置
+    currentX += dx * ease;
+    currentY += dy * ease;
+    
+    // 更新CSS变量
+    document.documentElement.style.setProperty('--x', currentX + 'px');
+    document.documentElement.style.setProperty('--y', currentY + 'px');
+    
+    // 继续动画直到到达目标位置
+    if (Math.abs(dx) > 0.1 || Math.abs(dy) > 0.1) {
+      requestAnimationFrame(updateSpotlight);
+    }
+  }
+  
+  // 鼠标移动事件处理
+  document.addEventListener('mousemove', e => {
+    if (isThrottled) return;
+    
+    // 更新目标位置
+    targetX = e.clientX;
+    targetY = e.clientY;
+    
+    // 开始动画
+    requestAnimationFrame(updateSpotlight);
+    
+    // 设置节流
+    isThrottled = true;
+    setTimeout(() => {
+      isThrottled = false;
+    }, throttleDelay);
+  });
+})();
 </script>
 </body>
 </html>
