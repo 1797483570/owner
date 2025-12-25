@@ -175,6 +175,23 @@ body {
   }
 }
 
+/* 二进制雨幕 */
+.binary-rain {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  z-index: -10;
+  pointer-events: none;
+  font-family: monospace;
+  color: var(--accent);
+  letter-spacing: 2px;
+  font-size: 14px;
+  overflow: hidden;
+  opacity: 0.2;
+}
+
 /* 动态粒子 */
 .particles {
   position: absolute;
@@ -484,6 +501,7 @@ footer {
 </head>
 
 <body>
+<div class="binary-rain" id="binaryRain"></div>
 <div class="spotlight"></div>
 
 <!-- GitHub链接 -->
@@ -744,6 +762,64 @@ setInterval(() => {
       isThrottled = false;
     }, throttleDelay);
   });
+})();
+
+/* 二进制雨幕效果 */
+(function() {
+  const canvas = document.createElement('canvas');
+  const ctx = canvas.getContext('2d');
+  const binaryRain = document.getElementById('binaryRain');
+  
+  // 设置画布尺寸
+  function resizeCanvas() {
+    canvas.width = window.innerWidth;
+    canvas.height = window.innerHeight;
+    binaryRain.appendChild(canvas);
+  }
+  
+  // 初始化画布
+  resizeCanvas();
+  window.addEventListener('resize', resizeCanvas);
+  
+  // 二进制字符
+  const binaryChars = '01';
+  const fontSize = 14;
+  // 减少列数，降低密度
+  const columns = Math.floor(canvas.width / (fontSize * 2));
+  
+  // 每列的y坐标
+  const drops = [];
+  for (let i = 0; i < columns; i++) {
+    drops[i] = Math.floor(Math.random() * -100) - 1;
+  }
+  
+  // 绘制函数
+  function draw() {
+    // 半透明背景，创建拖尾效果
+    ctx.fillStyle = 'rgba(11, 15, 26, 0.05)';
+    ctx.fillRect(0, 0, canvas.width, canvas.height);
+    
+    ctx.fillStyle = 'rgba(94, 234, 212, 0.5)'; // 使用主题色，但降低透明度
+    ctx.font = `${fontSize}px monospace`;
+    
+    for (let i = 0; i < drops.length; i++) {
+      // 随机选择0或1
+      const text = binaryChars.charAt(Math.floor(Math.random() * binaryChars.length));
+      
+      // 绘制字符
+      ctx.fillText(text, i * fontSize * 2, drops[i] * fontSize);
+      
+      // 如果字符到底部或者随机重置
+      if (drops[i] * fontSize > canvas.height && Math.random() > 0.975) {
+        drops[i] = 0;
+      }
+      
+      drops[i]++;
+    }
+  }
+  
+  // 启动动画
+  setInterval(draw, 33); // 约30fps
 })();
 </script>
 </body>
